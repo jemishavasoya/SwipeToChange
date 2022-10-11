@@ -1,5 +1,5 @@
 import 'dart:developer';
-
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 /// SwipeTo is a wrapper widget to other Widget that we can swipe horizontally
@@ -186,13 +186,17 @@ class _SwipeToState extends State<SwipeTo> with SingleTickerProviderStateMixin {
                 opacity: _rightIconAnimation.value,
                 duration: widget.animationDuration,
                 curve: Curves.decelerate,
-                child: widget.leftSwipeWidget ??
-                    Icon(
-                      widget.iconOnLeftSwipe,
-                      size: widget.iconSize,
-                      color:
-                          widget.iconColor ?? Theme.of(context).iconTheme.color,
-                    ),
+                child: Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.rotationY(math.pi),
+                  child: widget.leftSwipeWidget ??
+                      Icon(
+                        widget.iconOnLeftSwipe,
+                        size: widget.iconSize,
+                        color:
+                            widget.iconColor ?? Theme.of(context).iconTheme.color,
+                      ),
+                ),
               ),
             ],
           ),
